@@ -1,0 +1,12 @@
+{
+  "name": "asp.net",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "v4.0.0-beta.3",
+    "font-awesome": "Font-Awesome#v4.7.0",
+    "jQuery": "3.2.1",
+    "popper.js": "v1.13.0-next",
+    "malihu-custom-scrollbar-plugin": "3.1.5",
+    "jquery-validation": "1.17.0"
+  }
+}

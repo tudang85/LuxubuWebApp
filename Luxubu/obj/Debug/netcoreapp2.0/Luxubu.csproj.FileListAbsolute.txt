@@ -1,0 +1,11 @@
+C:\Users\Dell\Documents\Visual Studio 2017\Projects\Luxubu\Luxubu\bin\Debug\netcoreapp2.0\Luxubu.deps.json
+C:\Users\Dell\Documents\Visual Studio 2017\Projects\Luxubu\Luxubu\bin\Debug\netcoreapp2.0\Luxubu.runtimeconfig.json
+C:\Users\Dell\Documents\Visual Studio 2017\Projects\Luxubu\Luxubu\bin\Debug\netcoreapp2.0\Luxubu.runtimeconfig.dev.json
+C:\Users\Dell\Documents\Visual Studio 2017\Projects\Luxubu\Luxubu\bin\Debug\netcoreapp2.0\Luxubu.dll
+C:\Users\Dell\Documents\Visual Studio 2017\Projects\Luxubu\Luxubu\obj\Debug\netcoreapp2.0\Luxubu.csprojResolveAssemblyReference.cache
+C:\Users\Dell\Documents\Visual Studio 2017\Projects\Luxubu\Luxubu\obj\Debug\netcoreapp2.0\Luxubu.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Documents\Visual Studio 2017\Projects\Luxubu\Luxubu\obj\Debug\netcoreapp2.0\Luxubu.AssemblyInfoInputs.cache
+C:\Users\Dell\Documents\Visual Studio 2017\Projects\Luxubu\Luxubu\obj\Debug\netcoreapp2.0\Luxubu.AssemblyInfo.cs
+C:\Users\Dell\Documents\Visual Studio 2017\Projects\Luxubu\Luxubu\bin\Debug\netcoreapp2.0\Luxubu.pdb
+C:\Users\Dell\Documents\Visual Studio 2017\Projects\Luxubu\Luxubu\obj\Debug\netcoreapp2.0\Luxubu.dll
+C:\Users\Dell\Documents\Visual Studio 2017\Projects\Luxubu\Luxubu\obj\Debug\netcoreapp2.0\Luxubu.pdb

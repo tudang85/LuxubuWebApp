@@ -1,0 +1,117 @@
+﻿@model Luxubu.Models.StoriesModel
+@{
+    ViewData["Title"] = "Home Page";
+    var strSourceUrl = " Nguồn truyện";
+    var strTitle = "Tựa đề";
+    var strAuthor = "Tác giả";
+    var strDesc = "Tóm tắt";
+    var strCover = "Ảnh bìa";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <input type="button" id="Add" name="Add" value="Thêm truyện" class="btn btn-primary" data-toggle="modal" data-target="#myModal" />
+        </div>
+    </div>
+    @foreach (var item in Model.Stories)
+    {
+        <div class="row mt-2 pb-2 border border-dark border-top-0 border-left-0 border-right-0" name="story_info">
+            <div class="col-md-1">
+                <img src="@item.Cover" style="width:85px" />
+            </div>
+            <div class="col-md-11">
+                <div class="row">
+                    <div class="col-md-12"><strong>@item.Title</strong></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">Tác giả: @item.Author</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">Tóm tắt: @Html.Raw(item.Desc)</div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm truyện</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="FormAddStory" method="post" action="/home/addstory">
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="SourceUrl" class="col-md-2 col-form-label">@strSourceUrl</label>
+                        <div class="col-md-10">
+                            <input type="text" id="SourceUrl" name="SourceUrl" placeholder="@strSourceUrl" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span id="ResultInfo" class="alert text-left" role="alert"></span>
+                    <button type="button" id="Close" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="submit" id="Save" name="Save" class="btn btn-primary" data-loading-text="Đang xử lý">Thêm</button>
+                    <button type="reset" id="Reset" name="Reset" style="display:none"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#FormAddStory').submit(function (e) {
+            var SourceUrl = $('#SourceUrl').val();
+            var formData = {
+                'SourceUrl': SourceUrl
+            };
+            var actionUrl = $(this).attr('action');
+            var method = $(this).attr('method');
+            $.ajax({
+                type: method, // define the type of HTTP verb we want to use (POST for our form)
+                url: actionUrl, // the url where we want to POST
+                data: formData, // our data object
+                dataType: 'json', // what type of data do we expect back from the server
+                encode: true,
+                success: function (result) {
+                    if (result.error == 0) {
+                        $('#ResultInfo').removeClass("alert-danger").addClass("alert-success").text("Thêm mới thành công");
+                        $('#Save').button('reset');
+                        var StoryItemInfo = BuildStoryItemInfo(result.story.title, result.story.author, result.story.cover, result.story.desc);
+                        $('div[name=story_info]').last().after(StoryItemInfo);
+                    }
+                    else {
+                        $('#ResultInfo').removeClass("alert-success").addClass("alert-danger").text("Thêm mới thất bại");
+
+                    }
+                }
+            });
+            e.preventDefault();
+        });
+        $('#Add').click(function () {
+            $("#Reset").trigger("click");
+            $('#ResultInfo').text('');
+        });
+    });
+    function BuildStoryItemInfo(Title, Author, Cover, Desc) {
+        var item = '<div class="row mt-2 pb-2 border border-dark border-top-0 border-left-0 border-right-0" name="story_info">';
+            item += '<div class="col-md-1">';
+            item += '<img src="' + Cover + '" style="width:85px" />';
+            item += '</div>';
+            item += '<div class="col-md-11">';
+            item += '<div class="row">';
+            item += '<div class="col-md-12"><strong>' + Title + '</strong></div>';
+            item += '</div>';
+            item += '<div class="row">';
+            item += '<div class="col-md-12">Tác giả: ' + Author + '</div>';
+            item += '</div>';
+            item += '<div class="row">';
+            item += '<div class="col-md-12">Tóm tắt: ' + Desc + '</div>';
+            item += '</div></div></div>';
+            return item;
+    }
+</script>
